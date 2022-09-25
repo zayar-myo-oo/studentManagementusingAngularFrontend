@@ -1,0 +1,131 @@
+
+<div id="testheader">
+    <div class="container">
+        <div class=row>        
+            <div class="col-md-5 ">
+        <a href="/welcome-menu"><h3>Student Registration</h3></a>
+    </div>  
+    <div class="col-md-6">
+        UserId:&nbsp;{{LoginId}}&nbsp;|&nbsp;UserName : {{LoginUser}} 
+        <br>
+        Date : <span>{{ today | date:'medium'}}</span>
+    </div>  
+    <div class="col-md-1" >
+        <input type="button" class="btn-basic" id="lgnout-button" (click)="LoginOutUser()" value="Log Out" >
+    </div>        
+</div>
+</div>
+
+</div>
+<div class="container">
+<div class="sidenav">
+    
+    <button class="dropdown-btn" (click)="dropdownLink()"> Class Management <i class="fa fa-caret-down"></i></button>
+    
+    <div class="dropdown-container  ">
+      <a routerLink="/courseList">Course Registration </a>
+      <a routerLink="/createStu">Student Registration </a>
+      <a routerLink="/stuList">Student Search </a>
+    </div>
+    <a routerLink="/userList">Users Management</a>
+  </div>
+
+  
+
+
+<div class="main_contents">
+    <div id="sub_content">
+    <div>
+    	
+    	</div>
+    	
+       
+        <form  #userForm="ngForm" method="post" (ngSubmit)="onSubmit(userForm)" novalidate>
+		
+            <h2 class="col-md-6 offset-md-2 mb-5 mt-4">User Registration 
+
+                <br>
+<small *ngIf="passwordError" class="h5 text-danger">{{passwordError}}</small>
+            </h2>
+           
+             <div class="row mb-4">
+                <div class="col-md-2"></div>
+                <label for="name" class="col-md-2 col-form-label">Name</label>
+                <div class="col-md-4">
+<input type="text" id="name" class="form-control" required name="name" ngModel #name="ngModel" [class.is-invalid]="name.invalid && name.touched" placeholder="Enter Name">
+             
+                    
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-2"></div>
+                <label for="email" class="col-md-2 col-form-label">Email</label>
+                <div class="col-md-4">
+                
+                    <input type="email" id="name" class="form-control" required name="email" ngModel #email="ngModel" [class.is-invalid]="email.invalid && email.touched" placeholder="Enter Email">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-2"></div>
+                <label for="password" class="col-md-2 col-form-label">Passoword</label>
+                <div class="col-md-4">
+                    <input type="password" id="name" class="form-control" required name="password" ngModel #password="ngModel" [class.is-invalid]="password.invalid && password.touched" placeholder="Enter password">
+                </div>
+            
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-2"></div>
+                <label for="confirmPassword" class="col-md-2 col-form-label">Confirm Password</label>
+                <div class="col-md-4">
+                    <input type="password" id="name" class="form-control" required name="userconpassword" ngModel #conpassword="ngModel" [class.is-invalid]="conpassword.invalid && conpassword.touched" placeholder="Enter confirmPassword">           
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-2"></div>
+                <label for="userRole" class="col-md-2 col-form-label">User Role</label>
+                <div class="col-md-4">
+                
+                    <select id="name" class="form-select" required name="role" ngModel #role="ngModel" [class.is-invalid]="role.invalid && role.touched">                                        
+                    <option value="admin" >Admin</option>
+                    <option value="user">User</option>
+                    </select>
+        
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-4"></div>
+    
+                <div class="col-md-6">
+                    
+    
+                    <button type="button" class="btn btn-secondary col-md-2 addsubmits" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="userForm.invalid">Add</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Student Registration</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                   
+                                   <h5 style="color: rgb(127, 209, 131);"  id="addusersuccessfuls">Registered Succesfully !</h5>
+                                </div>
+                                <div class="modal-footer">
+                           
+                                    <button type="submit" class="btn btn-success col-md-2" data-bs-dismiss="modal">Ok</button>
+                           
+                                </div>
+                            </div>
+                        </div>
+                </div>
+    
+            </div>
+            </div>
+            
+           </form>
+    </div>
+</div><div id="testfooter">
+    <span>Copyright &#169; ACE Inspiration 2022</span>
+  </div>

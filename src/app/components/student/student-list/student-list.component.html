@@ -1,0 +1,110 @@
+<div id="testheader">
+  <div class="container">
+      <div class=row>        
+          <div class="col-md-5 ">
+      <a href="/welcome-menu"><h3>Student Registration</h3></a>
+  </div>  
+  <div class="col-md-6">
+    UserId:&nbsp;{{LoginId}}&nbsp;|&nbsp;UserName : {{LoginUser}} 
+      <br>
+      Date : <span>{{ today | date:'medium'}}</span>
+  </div>  
+  <div class="col-md-1" >
+    <input type="button" class="btn-basic" id="lgnout-button" (click)="LoginOutUser()" value="Log Out" >
+  </div>        
+</div>
+</div>
+
+</div>
+<div class="container">
+<div class="sidenav">
+  
+  <button class="dropdown-btn" (click)="dropdownLink()"> Class Management <i class="fa fa-caret-down"></i></button>
+  
+  <div class="dropdown-container  ">
+    <a routerLink="/courseList">Course Registration </a>
+    <a routerLink="/createStu">Student Registration </a>
+    <a routerLink="/stuList">Student Search </a>
+  </div>
+  <a routerLink="/userList">Users Management</a>
+</div>
+
+
+
+
+
+<div class="main_contents">
+<div id="sub_content">
+
+  <!-- (ngSubmit)="SearchUser(usersearchForm)" -->
+  <form class="row g-3 mt-3 ms-2" #usersearchForm="ngForm" (submit)="SearchUser(usersearchForm)">
+    <div class="col-auto">
+        <label for="staticEmail2" class="visually-hidden">User Id</label>
+        <input type="text" class="form-control" id="staticEmail2" placeholder="User ID"  name="id" #id="ngModel" ngModel  required>
+    </div>
+    <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">User Name</label>
+        <input type="text" class="form-control" id="inputPassword2" placeholder="User Name"  name="name" #name="ngModel" ngModel required>
+    </div>
+    <div class="col-auto">
+  <label for="inputPassword2" class="visually-hidden">Course</label>
+  <input type="text" placeholder="Course"  name="course" class="form-control" id="inputPassword2" #course="ngModel" ngModel required>
+</div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Search</button>
+        <!-- <button type="submit" class="btn btn-primary mb-3" [disabled]="id.invalid && name.invalid">Search</button> -->
+    </div>
+    <div class="col-auto">
+        <button type="rese"  class="btn btn-danger mb-3">Reset</button>
+    </div>
+    <div class="col-auto">
+      <button type="rese"  class="btn btn-outline-info mb-3" (click)="refresh()">Reset</button>
+  </div>
+  <div class="col-auto">
+    <button type="reset"  class="btn btn-outline-dark mb-3" (click)="getReport('pdf')">Get PDF</button>
+</div>
+<div class="col-auto">
+    <button type="reset"  class="btn btn-outline-dark mb-3" (click)="getReport('excel')">Get Excel</button>
+</div>
+</form>
+ 
+<div>
+  <table class="table table-striped" id="stduentTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+   
+      <tr *ngFor="let s of stuAll">
+        <th scope="row">#</th>
+        <td>{{s.id}}</td>
+        <td>{{s.name}}</td>
+        <td>
+          <span *ngFor="let cou of s.courseres" class="badge bg-danger p-2 me-2">
+            {{cou.name}}
+          </span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-secondary mb-2" (click)="GoToUpdate(s.id)" >See More</button>
+          <!-- <a href="STU002.html" class="text-decoration-none">See more</a> -->
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<div id="testfooter">
+  <span>Copyright &#169; ACE Inspiration 2022</span>
+</div>

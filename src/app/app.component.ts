@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'studentmanagementAngular';
+  today: number = Date.now();
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  public dropdownLink(){
+  var dropdown= document.querySelector(".dropdown-btn");
+  var i;
+  dropdown?.classList.toggle("active");
+  dropdown?.nextElementSibling?.classList.toggle("d-block")
+  }
+
 }

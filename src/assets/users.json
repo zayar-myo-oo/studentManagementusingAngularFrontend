@@ -1,0 +1,33 @@
+[
+    {
+    "id": 1,
+    "name":"MgMg",
+    "email":"mgmg@gmail.com",
+    "password":"123",
+    "role":"admin"
+}
+,
+{
+    "id":2,
+    "name":"Zayar",
+    "email":"zayar@gmail.com",
+    "password":"123",
+    "role":"admin"
+}
+,
+{
+    "id":3,
+    "name":"KyawKyaw",
+    "email":"kyawkyaw@gmail.com",
+    "password":"123",
+    "role":"admin"
+}
+,
+{
+    "id":4,
+    "name":"AyeAye",
+    "email":"ayeaye@gmail.com",
+    "password":"123",
+    "role":"admin"
+}
+]

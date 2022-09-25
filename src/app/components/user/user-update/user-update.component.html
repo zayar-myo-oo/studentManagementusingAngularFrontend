@@ -1,0 +1,132 @@
+
+<div id="testheader">
+    <div class="container">
+        <div class=row>        
+            <div class="col-md-5 ">
+        <a href="/welcome-menu"><h3>Student Registration</h3></a>
+    </div>  
+    <div class="col-md-6">
+        UserId:&nbsp;{{LoginId}}&nbsp;|&nbsp;UserName : {{LoginUser}} 
+        <br>
+        Date : <span>{{ today | date:'medium'}}</span>
+    </div>  
+    <div class="col-md-1" >
+        <input type="button" class="btn-basic" id="lgnout-button" (click)="LoginOutUser()" value="Log Out">
+    </div>        
+</div>
+</div>
+
+</div>
+<div class="container">
+<div class="sidenav">
+    
+    <button class="dropdown-btn" (click)="dropdownLink()"> Class Management <i class="fa fa-caret-down"></i></button>
+    
+    <div class="dropdown-container  ">
+      <a routerLink="/courseList">Course Registration </a>
+      <a routerLink="/createStu">Student Registration </a>
+      <a routerLink="/stuList">Student Search </a>
+    </div>
+    <a routerLink="/userList">Users Management</a>
+  </div>
+
+  
+
+
+<div class="main_contents" >
+    <div id="sub_content" >
+        <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit(updateUserForm)">
+        <h2 class="col-md-6 offset-md-2 mb-5 mt-4">User Update
+<br>
+<small *ngIf="passwordError" class="h5 text-danger">{{passwordError}}</small>
+        </h2>
+        
+        <div class="row mb-4">
+         
+            <div class="col-md-2"></div>
+            <label for="email" class="col-md-2 col-form-label">Name</label>
+            <div class="col-md-4">
+            <input type="text" class="form-control" id="email" name="userName" formControlName="userName" placeholder="User Name" [class.is-invalid]="userName?.invalid && userName?.touched"  >                
+                <small *ngIf="userName?.errors" class="text-danger">UserName is invalid</small>
+                    
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="email" class="col-md-2 col-form-label">Email</label>
+            <div class="col-md-4">
+                <input type="email" class="form-control" id="email" name="userEmail" formControlName="userEmail" placeholder="Usre Email" [class.is-invalid]="userEmail?.invalid && userEmail?.touched" >                
+                <small *ngIf="userEmail?.errors" class="text-danger">UserEmail is invalid</small>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="Passowrd" class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-4">
+                <input type="password" class="form-control" id="Password" name="userPassword" formControlName="userPassword" placeholder="Usre Password"  [class.is-invalid]="userPassword?.invalid && userPassword?.touched">                
+                <small *ngIf="userPassword?.errors" class="text-danger">Password is invalid</small>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="confirmPassword" class="col-md-2 col-form-label">Confirm Password</label>
+            <div class="col-md-4">
+                <input type="password" class="form-control" id="email" name="userConfirmPassword" formControlName="userConfirmPassword" placeholder="Usre ConfirmPassword" [class.is-invalid]="userConfirmPassword?.invalid && userConfirmPassword?.touched" >                
+                <small *ngIf="userConfirmPassword?.errors" class="text-danger">ConfirmPassword is invalid</small>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="userRole" class="col-md-2 col-form-label">User Role</label>
+            <div class="col-md-4">
+           
+                <select id="name" class="form-select" formControlName="userRole"  [class.is-invalid]="userRole?.invalid && userRole?.touched">                    
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    </select>
+                    <small *ngIf="userRole?.errors" class="text-danger">Select Your Role</small>
+
+               
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-6">
+               
+
+                <button type="button" class="btn btn-success col-md-2 addsubmits me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="updateUserForm.invalid">Update</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" >User Update</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               
+                               <h5 style="color: rgb(127, 209, 131);" id="addusersuccessfuls">Succesfully Updated !</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success col-md-2" data-bs-dismiss="modal">Ok</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <button type="button" class="btn btn-secondary col-md-2 " (click)="goToList()">
+                Back
+            </button>
+    
+
+        </div>
+      </div>
+        
+        </form>
+    </div>        
+</div>
+<div id="testfooter">
+    <span>Copyright &#169; ACE Inspiration 2022</span>
+  </div>

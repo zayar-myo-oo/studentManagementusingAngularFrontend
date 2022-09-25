@@ -1,0 +1,37 @@
+<div class="login-page-body"> 
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h1>Welcome! </h1>
+            <small *ngIf="passwordError" class="text-danger">{{passwordError}}</small>
+            
+          </div>
+        </div>
+        
+       <form  #userForm="ngForm" method="post" (ngSubmit)="onSubmit(userForm)" novalidate>
+        <div class="form-group">
+    
+       	<input #name="ngModel" required ngModel  [class.is-invalid]="name.invalid && name.touched"  type="text" placeholder="User ID" name="userId" class="form-control">
+          
+      </div>
+        <!-- 
+          ngModel ပါမှ #name="ngModel" ရေးလို့ရမှာ ခေါ်တဲ့ခါ name.touched or name.dirty or
+          ngModel ပါပြီး #name ပဲရေးမယ်ဆိုရင် input ထဲကတန်ဖိုးကို name.ClassName နဲ့ခေါ် ရမယ်
+
+          [class.d-none]တို့ [class.is-invalid]တို့သည် boostrap မှာရှိတဲ့ class ကိုခေါ် သုံးတာပါ angular နဲ့မဆိုင်ဘူးangular ရဲ့ property binding နဲ့တဲသုံးတာပါ
+        // validation code
+          required #password="ngModel" ngModel [class.is-invalid]="password.invalid && password.touched"
+         -->
+         <div class="form-group">
+         <input required #password="ngModel" ngModel [class.is-invalid]="password.invalid && password.touched"  type="password" placeholder="password"   name="password" class="form-control" >
+         <small [class.d-none]="password.valid || password.untouched" class="text-danger">password is required</small>
+        </div>
+
+
+          <button type="submit" class="btn btn-success" [disabled]="userForm.form.invalid">Login</button>
+          <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+      </div>
+    </div>
+</div>

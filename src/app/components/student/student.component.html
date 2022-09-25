@@ -1,0 +1,179 @@
+<div id="testheader">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<a href="/welcome-menu">
+					<h3>Student Registration</h3>
+				</a>
+			</div>
+			<div class="col-md-6">
+				UserId:&nbsp;{{ LoginId }}&nbsp;|&nbsp;UserName : {{ LoginUser }}
+				<br />
+				Date : <span>{{ today | date: "medium" }}</span>
+			</div>
+			<div class="col-md-1">
+				<input type="button" class="btn-basic" id="lgnout-button" (click)="LoginOutUser()" value="Log Out" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="sidenav">
+		<button class="dropdown-btn" (click)="dropdownLink()">
+			Class Management <i class="fa fa-caret-down"></i>
+		</button>
+
+		<div class="dropdown-container">
+			<a routerLink="/courseList">Course Registration </a>
+			<a routerLink="/createStu">Student Registration </a>
+			<a routerLink="/stuList">Student Search </a>
+		</div>
+		<a routerLink="/userList">Users Management</a>
+	</div>
+
+	<div class="main_contents">
+		<div id="sub_content">
+			<form #stuForm="ngForm" (submit)="OnSubmit(stuForm)">
+				<!-- <p style="color: red;">${error}</p> -->
+				<h2 class="col-md-6 offset-md-2 mb-5 mt-4">Student Registration</h2>
+				<div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="studentID" class="col-md-2 col-form-label">Student ID</label>
+					<div class="col-md-4">
+						<input type="text" placeholder="Student Id" ngModel="{{ StuMaxId }}" name="id"
+							class="form-control" id="studentID" readonly />
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="stuName" class="col-md-2 col-form-label">Name</label>
+					<div class="col-md-4">
+						<input type="text" class="form-control" name="name" #stuName="ngModel" ngModel
+							[class.is-invalid]="stuName.invalid && stuName.touched" id="stuName" required />
+						<small [class.d-none]="stuName.valid || stuName.untouched" class="text-danger">StudentName is
+							required</small>
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="stuDOB" class="col-md-2 col-form-label">DOB</label>
+					<div class="col-md-4">
+						<input type="date" class="form-control" id="stuDOB" name="dob" #stuDob="ngModel" ngModel
+							required 
+							[class.is-invalid]="stuDob.invalid && stuDob.touched"
+							/>
+							<small [class.d-none]="stuDob.valid || stuDob.untouched" class="text-danger">Student Date is
+								required</small>
+					</div>
+				</div>
+				<fieldset class="row mb-4">
+					<div class="col-md-2"></div>
+					<legend class="col-form-label col-md-2 pt-0">Gender</legend>
+					<div class="col-md-4">
+						<div class="form-check-inline">
+							<input type="radio" value="male" checked class="form-check-input" name="gender"
+							[class.is-invalid]="stuGender.invalid && stuGender.touched" id="stuGender" #stuGender="ngModel" ngModel  required/>
+							<label class="form-check-label" for="stuGender"> Male </label>
+						</div>
+						<div class="form-check-inline">
+							<input type="radio" value="female" class="form-check-input" name="gender"
+							[class.is-invalid]="stuGender.invalid && stuGender.touched"	id="stuGender" #stuGender="ngModel" ngModel  required/>
+							<label class="form-check-label" for="stuGender"> Female </label>
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="stuPhone" class="col-md-2 col-form-label">Phone</label>
+					<div class="col-md-4">
+						<input type="tel" class="form-control" id="stuPhone" name="phone"
+						[class.is-invalid]="stuPhone.invalid && stuPhone.touched"
+						#stuPhone="ngModel" ngModel required 
+						/>
+						<small [class.d-none]="stuPhone.valid || stuPhone.untouched" class="text-danger">Student Phone is
+							required</small>
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="stuEdu" class="col-md-2 col-form-label">Education</label>
+					<div class="col-md-4">
+						<select class="form-select"  id="stuEdu" name="education"  #education="ngModel"  ngModel 	[class.is-invalid]="education.invalid && education.touched">
+							<option value="Bachelor of Information Technology">
+								Bachelor of Information Technology
+							</option>
+							<option value="Diploma in IT">Diploma in IT</option>
+							<option value="Bachelor of Computer Science">
+								Bachelor of Computer Science
+							</option>
+						</select>
+					</div>
+				</div>
+				<fieldset class="row mb-4">
+					<div class="col-md-2"></div>
+					<legend class="col-form-label col-md-2 pt-0">Attend</legend>
+					<div class="col-md-4" >
+						
+						<div class="form-check-inline col-md-3" *ngFor="let item of stucourses">
+			<input type="checkbox" name="{{item.name}}" ngModel
+			class="form-check-input" id="stuCourse" value="{{item.name}}" 
+			[(ngModel)]="item.isselected" (change)="onchange()" />
+				<label class="form-check-label" for="stuCourse">
+							{{item.name}}</label>							
+
+						</div>
+						
+						
+					</div>
+				</fieldset>
+				<!-- <div class="row mb-4">
+					<div class="col-md-2"></div>
+					<label for="name" class="col-md-2 col-form-label">Photo</label>
+					<div class="col-md-4">
+						<input type="file" class="form-control" id="name" />
+					</div>
+				</div> -->
+
+				<div class="row mb-4">
+					<div class="col-md-4"></div>
+
+					<div class="col-md-4">
+						<button type="reset" class="btn btn-danger me-3">Reset</button>
+						<button type="submit" class="btn btn-secondary col-md-2" data-bs-toggle="modal" [disabled]="stuForm.invalid">
+							Add
+						</button>
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">
+											Student Registration
+										</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<h5 style="color: rgb(127, 209, 131)" id="addusersuccessfuls">
+											Registered Succesfully !
+										</h5>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success col-md-2" data-bs-dismiss="modal">
+											Ok
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="testfooter">
+		<span>Copyright &#169; ACE Inspiration 2022</span>
+	</div>
+</div>
